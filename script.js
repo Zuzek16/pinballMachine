@@ -1,10 +1,11 @@
-import Two from 'https://cdn.skypack.dev/two.js@latest';
+// import Two from 'https://cdn.skypack.dev/two.js@latest';
 //matter.js already imported
-
+// https://codepen.io/jonobr1/pen/rNdZNwM
 const canvasEl = document.getElementById("canvas");
+// let smaller = 0.95;
 let canvas = {
-    width: 123,
-    height: this.width*2
+    width: window.innerWidth ,
+    height: window.innerHeight 
 };
 
 const Engine = Matter.Engine,
@@ -39,9 +40,9 @@ const gameElements = [];
 
 const pinballRadius = 10;
 
-const pinBall = Bodies.circle(start.x, start.y, pinballRadius, {});
+const pinBall = Bodies.circle(start.x, start.y, pinballRadius, {isStatic: true});
 
-gameElements[0].push(pinBall);
+gameElements.push(pinBall);
 
 
 
@@ -49,7 +50,7 @@ function initGame(params) {
     Render.run(renderer);
     Runner.run(Runner.create(), engine);
 
-    World.add(engine.world, gameElements[0]);
+    Composite.add(engine.world, gameElements[0]);
     
 
     startGameAllow();
